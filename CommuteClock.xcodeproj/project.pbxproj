@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C194FA41B6E73FB00D0600A /* LocationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C194FA31B6E73FB00D0600A /* LocationAPI.m */; };
+		3C3AC4B61B4228B000067BA7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3AC4B51B4228B000067BA7 /* CoreLocation.framework */; };
+		3C3AC4B91B68552600067BA7 /* RouteAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3AC4B81B68552600067BA7 /* RouteAnnotation.m */; };
+		3C3AC4BC1B6855DA00067BA7 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */; };
 		3C846D771B1BDCBE0004BA33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D761B1BDCBE0004BA33 /* main.m */; };
 		3C846D7A1B1BDCBE0004BA33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D791B1BDCBE0004BA33 /* AppDelegate.m */; };
 		3C846D7D1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D7B1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld */; };
@@ -15,6 +19,8 @@
 		3C846D851B1BDCBE0004BA33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C846D841B1BDCBE0004BA33 /* Images.xcassets */; };
 		3C846D881B1BDCBE0004BA33 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C846D861B1BDCBE0004BA33 /* LaunchScreen.xib */; };
 		3C846D941B1BDCBE0004BA33 /* CommuteClockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D931B1BDCBE0004BA33 /* CommuteClockTests.m */; };
+		3C846D9E1B1BE04F0004BA33 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C846D9D1B1BE04F0004BA33 /* MapKit.framework */; };
+		3CEDE6641B7188E300E15202 /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEDE6631B7188E300E15202 /* AlarmClockViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C194FA21B6E73FB00D0600A /* LocationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAPI.h; sourceTree = "<group>"; };
+		3C194FA31B6E73FB00D0600A /* LocationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAPI.m; sourceTree = "<group>"; };
+		3C3AC4B51B4228B000067BA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3C3AC4B71B68552600067BA7 /* RouteAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteAnnotation.h; sourceTree = "<group>"; };
+		3C3AC4B81B68552600067BA7 /* RouteAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteAnnotation.m; sourceTree = "<group>"; };
+		3C3AC4BA1B6855DA00067BA7 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		3C846D711B1BDCBE0004BA33 /* CommuteClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommuteClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C846D751B1BDCBE0004BA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C846D761B1BDCBE0004BA33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +55,10 @@
 		3C846D8D1B1BDCBE0004BA33 /* CommuteClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommuteClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C846D921B1BDCBE0004BA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C846D931B1BDCBE0004BA33 /* CommuteClockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommuteClockTests.m; sourceTree = "<group>"; };
+		3C846D9D1B1BE04F0004BA33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3CEDE6611B702C3500E15202 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3CEDE6621B7188E300E15202 /* AlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClockViewController.h; sourceTree = "<group>"; };
+		3CEDE6631B7188E300E15202 /* AlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClockViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C3AC4B61B4228B000067BA7 /* CoreLocation.framework in Frameworks */,
+				3C846D9E1B1BE04F0004BA33 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +84,9 @@
 		3C846D681B1BDCBE0004BA33 = {
 			isa = PBXGroup;
 			children = (
+				3CEDE6611B702C3500E15202 /* README.md */,
+				3C3AC4B51B4228B000067BA7 /* CoreLocation.framework */,
+				3C846D9D1B1BE04F0004BA33 /* MapKit.framework */,
 				3C846D731B1BDCBE0004BA33 /* CommuteClock */,
 				3C846D901B1BDCBE0004BA33 /* CommuteClockTests */,
 				3C846D721B1BDCBE0004BA33 /* Products */,
@@ -87,6 +109,14 @@
 				3C846D791B1BDCBE0004BA33 /* AppDelegate.m */,
 				3C846D7E1B1BDCBE0004BA33 /* ViewController.h */,
 				3C846D7F1B1BDCBE0004BA33 /* ViewController.m */,
+				3CEDE6621B7188E300E15202 /* AlarmClockViewController.h */,
+				3CEDE6631B7188E300E15202 /* AlarmClockViewController.m */,
+				3C194FA21B6E73FB00D0600A /* LocationAPI.h */,
+				3C194FA31B6E73FB00D0600A /* LocationAPI.m */,
+				3C3AC4BA1B6855DA00067BA7 /* MyAnnotation.h */,
+				3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */,
+				3C3AC4B71B68552600067BA7 /* RouteAnnotation.h */,
+				3C3AC4B81B68552600067BA7 /* RouteAnnotation.m */,
 				3C846D811B1BDCBE0004BA33 /* Main.storyboard */,
 				3C846D841B1BDCBE0004BA33 /* Images.xcassets */,
 				3C846D861B1BDCBE0004BA33 /* LaunchScreen.xib */,
@@ -171,6 +201,11 @@
 				TargetAttributes = {
 					3C846D701B1BDCBE0004BA33 = {
 						CreatedOnToolsVersion = 6.3.2;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3C846D8C1B1BDCBE0004BA33 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -224,7 +259,11 @@
 			files = (
 				3C846D7A1B1BDCBE0004BA33 /* AppDelegate.m in Sources */,
 				3C846D7D1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld in Sources */,
+				3C3AC4BC1B6855DA00067BA7 /* MyAnnotation.m in Sources */,
 				3C846D801B1BDCBE0004BA33 /* ViewController.m in Sources */,
+				3C3AC4B91B68552600067BA7 /* RouteAnnotation.m in Sources */,
+				3CEDE6641B7188E300E15202 /* AlarmClockViewController.m in Sources */,
+				3C194FA41B6E73FB00D0600A /* LocationAPI.m in Sources */,
 				3C846D771B1BDCBE0004BA33 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +459,7 @@
 				3C846D991B1BDCBE0004BA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C846D9A1B1BDCBE0004BA33 /* Build configuration list for PBXNativeTarget "CommuteClockTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +468,7 @@
 				3C846D9C1B1BDCBE0004BA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

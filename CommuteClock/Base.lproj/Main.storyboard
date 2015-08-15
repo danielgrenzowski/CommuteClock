@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hlO-T1-3KE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,206 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a8s-Gl-VUL">
+                                <rect key="frame" x="125" y="130" width="350" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="3P9-4G-oLy"/>
+                                    <constraint firstAttribute="width" constant="350" id="8zt-Sn-2Nk"/>
+                                </constraints>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-tn-ozd">
+                                <rect key="frame" x="125" y="430" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YoK-f9-Fdo"/>
+                                    <constraint firstAttribute="width" constant="350" id="jmp-ku-tMt"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="My Location" id="9Yu-AZ-ZGg">
+                                        <connections>
+                                            <action selector="zoomInOnUsersLocation:" destination="vXZ-lx-hvc" id="kQ6-oz-CJ6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Destination" id="XoN-bm-uN3">
+                                        <connections>
+                                            <action selector="zoomInOnDestination:" destination="vXZ-lx-hvc" id="IpK-l9-v6l"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter destination here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sjl-hX-v6s">
+                                <rect key="frame" x="125" y="80" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fUf-5t-FTj"/>
+                                    <constraint firstAttribute="width" constant="350" id="osw-5f-zK5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="ktu-bj-FmY"/>
+                                </connections>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bP-RY-6vN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1dS-TM-wGa"/>
+                                    <constraint firstAttribute="width" constant="600" id="8nX-xh-Cfw"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Enter Destination" id="L3J-I8-rUO"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3Q-1s-NhF">
+                                <rect key="frame" x="125" y="480" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="5pj-Lk-YTM"/>
+                                    <constraint firstAttribute="height" constant="30" id="F8T-0I-OOG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="6bP-RY-6vN" secondAttribute="centerX" id="3cX-Bo-Rmc"/>
+                            <constraint firstAttribute="centerX" secondItem="sjl-hX-v6s" secondAttribute="centerX" id="3sl-rM-aKA"/>
+                            <constraint firstItem="6bP-RY-6vN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="8SM-Mw-wTM"/>
+                            <constraint firstAttribute="centerX" secondItem="x3Q-1s-NhF" secondAttribute="centerX" id="Fjw-mA-2as"/>
+                            <constraint firstItem="sjl-hX-v6s" firstAttribute="top" secondItem="6bP-RY-6vN" secondAttribute="bottom" constant="20" id="IAF-1J-vMa"/>
+                            <constraint firstItem="a8s-Gl-VUL" firstAttribute="top" secondItem="sjl-hX-v6s" secondAttribute="bottom" constant="20" id="SxH-sK-bdc"/>
+                            <constraint firstAttribute="centerX" secondItem="ZH5-tn-ozd" secondAttribute="centerX" id="hlf-ua-gmH"/>
+                            <constraint firstItem="x3Q-1s-NhF" firstAttribute="top" secondItem="ZH5-tn-ozd" secondAttribute="bottom" constant="20" id="nuJ-KA-GSq"/>
+                            <constraint firstItem="ZH5-tn-ozd" firstAttribute="top" secondItem="a8s-Gl-VUL" secondAttribute="bottom" id="o5o-Pl-pVa"/>
+                            <constraint firstAttribute="centerX" secondItem="a8s-Gl-VUL" secondAttribute="centerX" id="xAx-7y-TOT"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="redpin" id="yIf-Ca-hCH"/>
+                    <connections>
+                        <outlet property="commuteMapView" destination="a8s-Gl-VUL" id="Bui-U8-I4Q"/>
+                        <outlet property="destinationTextField" destination="sjl-hX-v6s" id="5bj-yI-u8F"/>
+                        <outlet property="timeLabel" destination="x3Q-1s-NhF" id="5dg-Li-m2j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2506" y="519"/>
+        </scene>
+        <!--Alarm-->
+        <scene sceneID="aaf-7J-2fl">
+            <objects>
+                <viewController title="Alarm" id="dYj-8e-SjI" customClass="AlarmClockViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="evw-SU-J5p"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qbc-3t-1bk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IRL-nr-2hN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKw-uL-Xmv">
+                                <rect key="frame" x="125" y="110" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="5az-kj-Stv"/>
+                                    <constraint firstAttribute="height" constant="30" id="HOK-fR-xq9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="R5S-RC-glD">
+                                <rect key="frame" x="0.0" y="189" width="600" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="DsG-vZ-PBf"/>
+                                    <constraint firstAttribute="height" constant="160" id="nSI-k8-kZD"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="460425820.15812898">
+                                    <!--2015-08-05 00:03:40 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="timePickerValueChanged:" destination="dYj-8e-SjI" eventType="valueChanged" id="31i-gO-7dn"/>
+                                </connections>
+                            </datePicker>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eIx-7w-lBQ">
+                                <rect key="frame" x="276" y="400" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="rXd-fT-Nfd"/>
+                                    <constraint firstAttribute="height" constant="31" id="tCA-q4-akG"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="alarmSwitchValueChanged:" destination="dYj-8e-SjI" eventType="valueChanged" id="Nnm-oA-NpB"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pt1-Io-vIu">
+                                <rect key="frame" x="125" y="481" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="LLN-vF-K4e"/>
+                                    <constraint firstAttribute="height" constant="30" id="dHQ-sf-7La"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4F-kV-zdq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="50s-lc-sea"/>
+                                    <constraint firstAttribute="width" constant="600" id="W52-rj-sUz"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Set Alarm" id="1Sx-6w-Oyc"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KKw-uL-Xmv" firstAttribute="top" secondItem="L4F-kV-zdq" secondAttribute="bottom" constant="50" id="9VF-bt-XDd"/>
+                            <constraint firstAttribute="centerX" secondItem="L4F-kV-zdq" secondAttribute="centerX" id="JHF-sa-drs"/>
+                            <constraint firstAttribute="centerX" secondItem="eIx-7w-lBQ" secondAttribute="centerX" id="MUj-VW-2x7"/>
+                            <constraint firstAttribute="centerX" secondItem="R5S-RC-glD" secondAttribute="centerX" id="MlB-6E-dCE"/>
+                            <constraint firstItem="eIx-7w-lBQ" firstAttribute="top" secondItem="R5S-RC-glD" secondAttribute="bottom" constant="50" id="Ox4-FV-R61"/>
+                            <constraint firstAttribute="centerX" secondItem="KKw-uL-Xmv" secondAttribute="centerX" id="YcS-mc-sBl"/>
+                            <constraint firstItem="L4F-kV-zdq" firstAttribute="top" secondItem="IRL-nr-2hN" secondAttribute="topMargin" id="fSF-0P-UEw"/>
+                            <constraint firstItem="pt1-Io-vIu" firstAttribute="top" secondItem="eIx-7w-lBQ" secondAttribute="bottom" constant="50" id="izC-nR-GCG"/>
+                            <constraint firstAttribute="centerX" secondItem="pt1-Io-vIu" secondAttribute="centerX" id="oF0-AE-HcL"/>
+                            <constraint firstItem="R5S-RC-glD" firstAttribute="top" secondItem="KKw-uL-Xmv" secondAttribute="bottom" constant="50" id="uqO-gB-du7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="clock" id="FKu-tJ-j8R"/>
+                    <connections>
+                        <outlet property="alarmLabel" destination="pt1-Io-vIu" id="MW8-k3-zdr"/>
+                        <outlet property="alarmSwitch" destination="eIx-7w-lBQ" id="RYS-Dd-VXO"/>
+                        <outlet property="clockLabel" destination="KKw-uL-Xmv" id="c8T-jU-AZI"/>
+                        <outlet property="timePicker" destination="R5S-RC-glD" id="ZDP-0F-dAK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAZ-YL-PMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488" y="1271"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Iut-lo-480">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hlO-T1-3KE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="K8q-0h-r2y">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="hZM-O3-A2n"/>
+                        <segue destination="dYj-8e-SjI" kind="relationship" relationship="viewControllers" id="lZM-OL-uuw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sk-Hx-PNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="816"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clock" width="25" height="28"/>
+        <image name="redpin" width="20" height="32"/>
+    </resources>
 </document>
