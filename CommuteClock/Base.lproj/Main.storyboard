@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="width" constant="600" id="8nX-xh-Cfw"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Enter Destination" id="L3J-I8-rUO"/>
+                                    <navigationItem title="Destination" id="L3J-I8-rUO"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3Q-1s-NhF">
@@ -133,9 +133,6 @@
                                 <date key="date" timeIntervalSinceReferenceDate="460425820.15812898">
                                     <!--2015-08-05 00:03:40 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="timePickerValueChanged:" destination="dYj-8e-SjI" eventType="valueChanged" id="31i-gO-7dn"/>
-                                </connections>
                             </datePicker>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eIx-7w-lBQ">
                                 <rect key="frame" x="276" y="400" width="51" height="31"/>
@@ -164,7 +161,7 @@
                                     <constraint firstAttribute="width" constant="600" id="W52-rj-sUz"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Set Alarm" id="1Sx-6w-Oyc"/>
+                                    <navigationItem title="Alarm" id="1Sx-6w-Oyc"/>
                                 </items>
                             </navigationBar>
                         </subviews>

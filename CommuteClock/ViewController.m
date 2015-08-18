@@ -18,10 +18,9 @@
 
     [self initializeCommuteMapView];
     [self configureTimeLabel];
- 
 }
 
-#pragma mark - custom methods
+#pragma mark - UI setup
 
 - (void)initializeCommuteMapView {
     
@@ -44,14 +43,14 @@
 }
 
 -(void)dismissKeyboard {
+    
     [self.destinationTextField resignFirstResponder];
 }
-
-
 
 #pragma mark - timeLabel methods
 
 - (void)configureTimeLabel {
+    
     self.timeLabel.textColor = [UIColor blackColor];
     [self.timeLabel setAdjustsFontSizeToFitWidth:YES];
 }
@@ -115,9 +114,6 @@
     }];
 }
 
-
-
-
 #pragma mark - MapView delegate methods
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -172,7 +168,8 @@
     
 }
 
-#pragma mark - TextField Delegate Methods
+#pragma mark - TextField delegate methods
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.destinationTextField.backgroundColor = [UIColor whiteColor];
@@ -193,7 +190,6 @@
     }
     
     [self.destinationTextField resignFirstResponder];
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -202,7 +198,6 @@
     [textField resignFirstResponder];
     
     return YES;
-    
 }
 
 
