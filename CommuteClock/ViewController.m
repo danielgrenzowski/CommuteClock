@@ -18,6 +18,7 @@
 
     [self initializeCommuteMapView];
     [self configureTimeLabel];
+    
 }
 
 #pragma mark - UI setup
@@ -67,7 +68,6 @@
                                  timestamp:nil];
     
     self.destination = newDestination;
-    NSLog(@"Destination coordinates are: %f, %f", self.destination.coordinate.latitude, self.destination.coordinate.longitude);
 }
 
 #pragma mark - UI methods
@@ -100,15 +100,51 @@
             NSLog(@"Error %@", error.description);
         } else {
             MKRoute *newRoute = response.routes.lastObject;
+            self.commuteTimeWithTraffic = newRoute.expectedTravelTime;
             
             float min = floor(newRoute.expectedTravelTime/60);
             float sec = round(newRoute.expectedTravelTime - min * 60);
-            self.commuteTime = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
+            NSString *strCommuteTime = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
             
             NSString *myDestination = response.destination.name;
             
-            self.timeLabel.text = [NSString stringWithFormat:@"Commute time to %@ is %@", myDestination, self.commuteTime];
+            self.timeLabel.text = [NSString stringWithFormat:@"Commute time to %@ is %@", myDestination, strCommuteTime];
             [self.commuteMapView addOverlay:newRoute.polyline];
+        }
+        
+    }];
+}
+
+- (void)calculateCommuteTimeWithNoTraffic {
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.coordinate addressDictionary:nil];
+    
+    MKMapItem *destinationMapItem = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    MKMapItem *currentUserLocationMapItem = [MKMapItem mapItemForCurrentLocation];
+    
+    NSDate *startOfToday = [[NSCalendar currentCalendar] startOfDayForDate:[NSDate date]];
+    
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    [request setSource:currentUserLocationMapItem];
+    [request setDestination:destinationMapItem];
+    [request setTransportType:MKDirectionsTransportTypeAutomobile];
+    [request setRequestsAlternateRoutes:NO];
+    [request setDepartureDate:startOfToday];
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@", error.description);
+        } else {
+            MKRoute *newRoute = response.routes.lastObject;
+            
+            self.commuteTimeWithoutTraffic = newRoute.expectedTravelTime;
+            
+            float min = floor(newRoute.expectedTravelTime/60);
+            float sec = round(newRoute.expectedTravelTime - min * 60);
+            NSString *strCommuteTimeWithOutTraffic = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
+
+            NSLog(@"Commute time without traffic is: %@", strCommuteTimeWithOutTraffic);
         }
         
     }];
@@ -183,6 +219,8 @@
         [self initializeDestinationFromAddressString:self.destinationString];
         [self displayDestinationOnMap];
         [self drawRouteOnMap];
+        [self calculateCommuteTimeWithNoTraffic];
+        
     } else {
         self.destinationTextField.backgroundColor = [UIColor redColor];
         self.destinationTextField.placeholder = @"Please enter a non-blank address";
@@ -196,7 +234,6 @@
 {
 
     [textField resignFirstResponder];
-    
     return YES;
 }
 

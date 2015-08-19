@@ -14,7 +14,9 @@
 
 @property (strong, nonatomic) NSString *destinationString;
 @property (strong, nonatomic) CLLocation *destination;
-@property (strong, nonatomic) NSString *commuteTime;
+
+@property NSTimeInterval commuteTimeWithTraffic;
+@property NSTimeInterval commuteTimeWithoutTraffic;
 
 - (IBAction)zoomInOnUsersLocation:(id)sender;
 - (IBAction)zoomInOnDestination:(id)sender;
