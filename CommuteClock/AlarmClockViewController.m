@@ -19,7 +19,7 @@
 
     [self configureLabel:self.clockLabel];
     [self configureLabel:self.alarmLabel];
-    [self configureDateFormatter];
+    [self configureLabel:self.alarmAdjustmentLabel];
     
     [self.myAlarmClock activateClock];
     [self updateAlarmLabel];
@@ -35,13 +35,6 @@
     [myLabel setAdjustsFontSizeToFitWidth:YES];
 }
 
-- (void)configureDateFormatter {
-    
-    self.myDateFormatter = [[NSDateFormatter alloc] init];
-    [self.myDateFormatter setDateFormat:@"yyyy-MM-dd' 'HH:mm:ss"];
-}
-
-
 #pragma mark - Update UI
 
 - (void)updateClockLabel {
@@ -51,8 +44,10 @@
         [self soundAlarm];
     }
     
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"HH:mm:ss"];
     
-    NSString *message = [self.myDateFormatter stringFromDate:currentTime];
+    NSString *message = [myDateFormatter stringFromDate:currentTime];
     self.clockLabel.text = [NSString stringWithFormat:@"%@", message];
 }
 
@@ -61,7 +56,11 @@
     if (self.myAlarmClock.alarm) {
 
         NSDate *alarmTimeAdjusted = [self calculateCommuteTimeAdjustdedFromTime:self.myAlarmClock.alarm];
-        NSString *strAlarmTime = [self.myDateFormatter stringFromDate:alarmTimeAdjusted];
+        
+        NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+        [myDateFormatter setDateFormat:@"HH:mm:ss"];
+        
+        NSString *strAlarmTime = [myDateFormatter stringFromDate:alarmTimeAdjusted];
         self.alarmLabel.text = [NSString stringWithFormat:@"Alarm set for %@", strAlarmTime];
         
     } else {
@@ -97,15 +96,28 @@
 - (NSDate *)calculateCommuteTimeAdjustdedFromTime:(NSDate *)alarmTime {
     
     ViewController *mapViewController = (ViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-    NSTimeInterval commuteTimeInclTraffic = mapViewController.commuteTimeWithTraffic;
-    NSTimeInterval commuteTimeNoTraffic = mapViewController.commuteTimeWithoutTraffic;
-    NSTimeInterval difference = commuteTimeInclTraffic - commuteTimeNoTraffic;
-    NSLog(@"Difference between times is %f", difference);
     
-    return [alarmTime dateByAddingTimeInterval:-difference];;
+    NSTimeInterval commuteTimeInclTraffic = mapViewController.commuteTimeWithTraffic;
+    NSLog(@"Commute time with traffic is %@", [self timeInHoursAndSeconds:commuteTimeInclTraffic]);
+    
+    NSTimeInterval commuteTimeNoTraffic = mapViewController.commuteTimeWithoutTraffic;
+    NSLog(@"Commute time without traffic is %@", [self timeInHoursAndSeconds:commuteTimeNoTraffic]);
+    
+    NSTimeInterval difference = commuteTimeInclTraffic - commuteTimeNoTraffic;
+    NSString *strTrafficAdjustment = [self timeInHoursAndSeconds:difference];
+    self.alarmAdjustmentLabel.text = [NSString stringWithFormat:@"Traffic adjustment is %@",strTrafficAdjustment];
+    
+    return [NSDate dateWithTimeInterval:-difference sinceDate:alarmTime];
     
 }
-        
+
+- (NSString *)timeInHoursAndSeconds:(NSTimeInterval)myInterval {
+    
+    float min = floor(myInterval/60);
+    float sec = round(myInterval - min * 60);
+    return [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
+}
+
 - (BOOL)firstDate:(NSDate *)firstDate isEqualToWithinOneSecond:(NSDate *)secondDate {
     
     if (([firstDate timeIntervalSinceDate:secondDate] > 0 ) &&
@@ -115,13 +127,10 @@
         return NO;
 }
 
-- (NSDate *)roundDownToNearestMinute:(NSDate *)myDate {
-    
-    NSTimeInterval timeSince1970 = [[NSDate date] timeIntervalSince1970];
-    
-    timeSince1970 -= fmod(timeSince1970, 60); // subtract away any extra seconds
-    
-    return [NSDate dateWithTimeIntervalSince1970:timeSince1970];
+- (NSDate *)dateWithZeroSeconds:(NSDate *)date
+{
+    NSTimeInterval time = floor([date timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+    return  [NSDate dateWithTimeIntervalSinceReferenceDate:time];
 }
 
 #pragma mark - UISwitch delegate methods
@@ -130,7 +139,8 @@
     
     if (self.alarmSwitch.isOn) {
         NSDate *myAlarm = self.timePicker.date;
-        self.myAlarmClock.alarm = [self roundDownToNearestMinute:myAlarm];
+        self.myAlarmClock.alarm = [self dateWithZeroSeconds:myAlarm];
+        NSLog(@"Original alarm time set to: %@", self.myAlarmClock.alarm);
     } else {
         self.myAlarmClock.alarm = nil;
     }

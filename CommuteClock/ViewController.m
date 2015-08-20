@@ -1,7 +1,7 @@
 #import "ViewController.h"
 
-//1 Duncan Mill Road, Toronto, ON M3B 1Z2
-//4077 Hamilton Road, Ottawa, ON K0A 1A0
+// 1 Duncan Mill Road, Toronto, ON M3B 1Z2
+// 4077 Hamilton Road, Ottawa, ON K0A 1A0
 
 @interface ViewController ()
 
@@ -140,11 +140,11 @@
             
             self.commuteTimeWithoutTraffic = newRoute.expectedTravelTime;
             
-            float min = floor(newRoute.expectedTravelTime/60);
-            float sec = round(newRoute.expectedTravelTime - min * 60);
-            NSString *strCommuteTimeWithOutTraffic = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
-
-            NSLog(@"Commute time without traffic is: %@", strCommuteTimeWithOutTraffic);
+//            float min = floor(newRoute.expectedTravelTime/60);
+//            float sec = round(newRoute.expectedTravelTime - min * 60);
+//            NSString *strCommuteTimeWithOutTraffic = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
+//
+//            NSLog(@"Commute time without traffic is: %@", strCommuteTimeWithOutTraffic);
         }
         
     }];

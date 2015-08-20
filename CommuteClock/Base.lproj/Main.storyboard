@@ -115,16 +115,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKw-uL-Xmv">
-                                <rect key="frame" x="125" y="110" width="350" height="30"/>
+                                <rect key="frame" x="125" y="90" width="350" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="5az-kj-Stv"/>
-                                    <constraint firstAttribute="height" constant="30" id="HOK-fR-xq9"/>
+                                    <constraint firstAttribute="height" constant="70" id="HOK-fR-xq9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="R5S-RC-glD">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="R5S-RC-glD">
                                 <rect key="frame" x="0.0" y="189" width="600" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="DsG-vZ-PBf"/>
@@ -135,7 +135,7 @@
                                 </date>
                             </datePicker>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eIx-7w-lBQ">
-                                <rect key="frame" x="276" y="400" width="51" height="31"/>
+                                <rect key="frame" x="276" y="380" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="rXd-fT-Nfd"/>
                                     <constraint firstAttribute="height" constant="31" id="tCA-q4-akG"/>
@@ -145,7 +145,7 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pt1-Io-vIu">
-                                <rect key="frame" x="125" y="481" width="350" height="30"/>
+                                <rect key="frame" x="125" y="501" width="350" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="LLN-vF-K4e"/>
                                     <constraint firstAttribute="height" constant="30" id="dHQ-sf-7La"/>
@@ -164,23 +164,36 @@
                                     <navigationItem title="Alarm" id="1Sx-6w-Oyc"/>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRt-5Q-P1s">
+                                <rect key="frame" x="125" y="441" width="350" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="4iT-8E-e99"/>
+                                    <constraint firstAttribute="height" constant="30" id="948-L6-e0A"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KKw-uL-Xmv" firstAttribute="top" secondItem="L4F-kV-zdq" secondAttribute="bottom" constant="50" id="9VF-bt-XDd"/>
+                            <constraint firstItem="KKw-uL-Xmv" firstAttribute="top" secondItem="L4F-kV-zdq" secondAttribute="bottom" constant="30" id="9VF-bt-XDd"/>
+                            <constraint firstAttribute="centerX" secondItem="tRt-5Q-P1s" secondAttribute="centerX" id="Cqm-gP-Xhn"/>
+                            <constraint firstItem="tRt-5Q-P1s" firstAttribute="top" secondItem="eIx-7w-lBQ" secondAttribute="bottom" constant="30" id="IgN-VU-nLI"/>
                             <constraint firstAttribute="centerX" secondItem="L4F-kV-zdq" secondAttribute="centerX" id="JHF-sa-drs"/>
+                            <constraint firstItem="pt1-Io-vIu" firstAttribute="top" secondItem="tRt-5Q-P1s" secondAttribute="bottom" constant="30" id="KKm-bV-UtW"/>
                             <constraint firstAttribute="centerX" secondItem="eIx-7w-lBQ" secondAttribute="centerX" id="MUj-VW-2x7"/>
                             <constraint firstAttribute="centerX" secondItem="R5S-RC-glD" secondAttribute="centerX" id="MlB-6E-dCE"/>
-                            <constraint firstItem="eIx-7w-lBQ" firstAttribute="top" secondItem="R5S-RC-glD" secondAttribute="bottom" constant="50" id="Ox4-FV-R61"/>
+                            <constraint firstItem="eIx-7w-lBQ" firstAttribute="top" secondItem="R5S-RC-glD" secondAttribute="bottom" constant="30" id="Ox4-FV-R61"/>
                             <constraint firstAttribute="centerX" secondItem="KKw-uL-Xmv" secondAttribute="centerX" id="YcS-mc-sBl"/>
                             <constraint firstItem="L4F-kV-zdq" firstAttribute="top" secondItem="IRL-nr-2hN" secondAttribute="topMargin" id="fSF-0P-UEw"/>
-                            <constraint firstItem="pt1-Io-vIu" firstAttribute="top" secondItem="eIx-7w-lBQ" secondAttribute="bottom" constant="50" id="izC-nR-GCG"/>
                             <constraint firstAttribute="centerX" secondItem="pt1-Io-vIu" secondAttribute="centerX" id="oF0-AE-HcL"/>
-                            <constraint firstItem="R5S-RC-glD" firstAttribute="top" secondItem="KKw-uL-Xmv" secondAttribute="bottom" constant="50" id="uqO-gB-du7"/>
+                            <constraint firstItem="R5S-RC-glD" firstAttribute="top" secondItem="KKw-uL-Xmv" secondAttribute="bottom" constant="30" id="peG-Ky-3NH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Alarm" image="clock" id="FKu-tJ-j8R"/>
                     <connections>
+                        <outlet property="alarmAdjustmentLabel" destination="tRt-5Q-P1s" id="qIE-BD-4J2"/>
                         <outlet property="alarmLabel" destination="pt1-Io-vIu" id="MW8-k3-zdr"/>
                         <outlet property="alarmSwitch" destination="eIx-7w-lBQ" id="RYS-Dd-VXO"/>
                         <outlet property="clockLabel" destination="KKw-uL-Xmv" id="c8T-jU-AZI"/>
