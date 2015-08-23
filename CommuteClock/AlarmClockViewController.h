@@ -2,6 +2,7 @@
 #import "ViewController.h"
 #import "AlarmClock.h"
 
+
 @interface AlarmClockViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmAdjustmentLabel;
@@ -9,7 +10,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *alarmLabel;
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *alarmSwitch;
-
 
 - (void)updateClockLabel;
 - (void)updateAlarmLabel;

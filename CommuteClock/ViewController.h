@@ -3,6 +3,7 @@
 #import <MapKit/MKAnnotation.h>
 #import "LocationAPI.h"
 #import "MyAnnotation.h"
+#import "MyLocationManager.h"
 
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
@@ -11,6 +12,7 @@
 @property (nonatomic, retain) IBOutlet MKMapView *commuteMapView;
 
 @property (strong, nonatomic) LocationAPI *locationAPI;
+@property (strong, nonatomic) MyLocationManager *myLocationManager;
 
 @property (strong, nonatomic) NSString *destinationString;
 @property (strong, nonatomic) CLLocation *destination;

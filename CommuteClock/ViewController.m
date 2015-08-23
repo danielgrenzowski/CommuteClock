@@ -14,6 +14,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [self createLocationManager];
     [self initializeGestureRecognizer];
 
     [self initializeCommuteMapView];
@@ -35,6 +37,7 @@
 }
 
 - (void)initializeGestureRecognizer {
+    
     self.locationAPI = [[LocationAPI alloc] init];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -116,6 +119,7 @@
 }
 
 - (void)calculateCommuteTimeWithNoTraffic {
+    
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.coordinate addressDictionary:nil];
     
     MKMapItem *destinationMapItem = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
@@ -139,15 +143,17 @@
             MKRoute *newRoute = response.routes.lastObject;
             
             self.commuteTimeWithoutTraffic = newRoute.expectedTravelTime;
-            
-//            float min = floor(newRoute.expectedTravelTime/60);
-//            float sec = round(newRoute.expectedTravelTime - min * 60);
-//            NSString *strCommuteTimeWithOutTraffic = [NSString stringWithFormat:@"%02d:%02d", (int)min, (int)sec];
-//
-//            NSLog(@"Commute time without traffic is: %@", strCommuteTimeWithOutTraffic);
         }
         
     }];
+}
+
+#pragma mark - MyLocationManager methods
+
+- (void) createLocationManager {
+    
+    self.myLocationManager = [MyLocationManager sharedInstance];
+    
 }
 
 #pragma mark - MapView delegate methods
@@ -214,7 +220,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     
-    if ([textField.text length] != 0){
+    if ([textField.text length] != 0) {
         self.destinationString = self.destinationTextField.text;
         [self initializeDestinationFromAddressString:self.destinationString];
         [self displayDestinationOnMap];

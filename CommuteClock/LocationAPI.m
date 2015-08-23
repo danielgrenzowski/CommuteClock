@@ -3,23 +3,6 @@
 
 @implementation LocationAPI
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        
-        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [self.locationManager requestWhenInUseAuthorization];
-        }
-    }
-    [self.locationManager startUpdatingLocation];
-    return self;
-}
-
 - (CLLocationCoordinate2D) getLocationCoordinateFromAddressString: (NSString*) address
 {    
     double latitude = 0, longitude = 0;
@@ -41,13 +24,5 @@
     return center;
     
 }
-
-#pragma mark - LocationManager delegate methods
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    //NSLog(@"%@", [locations lastObject]);
-}
-
 
 @end

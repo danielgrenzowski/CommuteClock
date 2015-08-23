@@ -15,6 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     [self createAlarmClock];
 
     [self configureLabel:self.clockLabel];
@@ -83,6 +84,10 @@
 }
 
 - (void)soundAlarm {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SoundAlarmClockNotification"
+                                                        object:self
+                                                      userInfo:nil];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alarm On!"
                                                         message:nil delegate:self
