@@ -11,6 +11,8 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *alarmSwitch;
 
+@property (strong, nonatomic) AlarmClock *myAlarmClock;
+
 - (void)updateClockLabel;
 - (void)updateAlarmLabel;
 

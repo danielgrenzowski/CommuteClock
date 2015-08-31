@@ -4,6 +4,6 @@
 
 @interface LocationAPI : NSObject
 
-- (CLLocationCoordinate2D) getLocationCoordinateFromAddressString:(NSString *)address;
++ (CLLocationCoordinate2D) getLocationCoordinateFromAddressString:(NSString *)address;
 
 @end

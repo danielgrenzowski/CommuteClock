@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		3C194FA41B6E73FB00D0600A /* LocationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C194FA31B6E73FB00D0600A /* LocationAPI.m */; };
 		3C3AC4B61B4228B000067BA7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3AC4B51B4228B000067BA7 /* CoreLocation.framework */; };
-		3C3AC4BC1B6855DA00067BA7 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */; };
 		3C40C88B1B82AE1E004334BA /* AlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40C88A1B82AE1E004334BA /* AlarmClock.m */; };
 		3C6140391B8A3BB000C8A025 /* MyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6140381B8A3BB000C8A025 /* MyLocationManager.m */; };
+		3C61403F1B8A800900C8A025 /* Destination.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C61403E1B8A800900C8A025 /* Destination.m */; };
 		3C846D771B1BDCBE0004BA33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D761B1BDCBE0004BA33 /* main.m */; };
 		3C846D7A1B1BDCBE0004BA33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D791B1BDCBE0004BA33 /* AppDelegate.m */; };
 		3C846D7D1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C846D7B1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld */; };
@@ -38,12 +38,12 @@
 		3C194FA21B6E73FB00D0600A /* LocationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAPI.h; sourceTree = "<group>"; };
 		3C194FA31B6E73FB00D0600A /* LocationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAPI.m; sourceTree = "<group>"; };
 		3C3AC4B51B4228B000067BA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		3C3AC4BA1B6855DA00067BA7 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
-		3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		3C40C8891B82AE1E004334BA /* AlarmClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClock.h; sourceTree = "<group>"; };
 		3C40C88A1B82AE1E004334BA /* AlarmClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClock.m; sourceTree = "<group>"; };
 		3C6140371B8A3BB000C8A025 /* MyLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationManager.h; sourceTree = "<group>"; };
 		3C6140381B8A3BB000C8A025 /* MyLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocationManager.m; sourceTree = "<group>"; };
+		3C61403D1B8A800900C8A025 /* Destination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Destination.h; sourceTree = "<group>"; };
+		3C61403E1B8A800900C8A025 /* Destination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Destination.m; sourceTree = "<group>"; };
 		3C846D711B1BDCBE0004BA33 /* CommuteClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommuteClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C846D751B1BDCBE0004BA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C846D761B1BDCBE0004BA33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,12 +98,12 @@
 		3C61403B1B8A3F9500C8A025 /* Custom Objects */ = {
 			isa = PBXGroup;
 			children = (
+				3C61403D1B8A800900C8A025 /* Destination.h */,
+				3C61403E1B8A800900C8A025 /* Destination.m */,
 				3C40C8891B82AE1E004334BA /* AlarmClock.h */,
 				3C40C88A1B82AE1E004334BA /* AlarmClock.m */,
 				3C6140371B8A3BB000C8A025 /* MyLocationManager.h */,
 				3C6140381B8A3BB000C8A025 /* MyLocationManager.m */,
-				3C3AC4BA1B6855DA00067BA7 /* MyAnnotation.h */,
-				3C3AC4BB1B6855DA00067BA7 /* MyAnnotation.m */,
 			);
 			name = "Custom Objects";
 			sourceTree = "<group>";
@@ -286,9 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C61403F1B8A800900C8A025 /* Destination.m in Sources */,
 				3C846D7A1B1BDCBE0004BA33 /* AppDelegate.m in Sources */,
 				3C846D7D1B1BDCBE0004BA33 /* CommuteClock.xcdatamodeld in Sources */,
-				3C3AC4BC1B6855DA00067BA7 /* MyAnnotation.m in Sources */,
 				3C846D801B1BDCBE0004BA33 /* ViewController.m in Sources */,
 				3CEDE6641B7188E300E15202 /* AlarmClockViewController.m in Sources */,
 				3C194FA41B6E73FB00D0600A /* LocationAPI.m in Sources */,

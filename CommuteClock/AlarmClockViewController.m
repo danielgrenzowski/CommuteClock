@@ -3,7 +3,6 @@
 
 @interface AlarmClockViewController ()
 
-@property (strong, nonatomic) AlarmClock *myAlarmClock;
 
 @end
 
@@ -15,7 +14,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
     [self createAlarmClock];
 
     [self configureLabel:self.clockLabel];
@@ -23,8 +21,6 @@
     [self configureLabel:self.alarmAdjustmentLabel];
     
     [self.myAlarmClock activateClock];
-    [self updateAlarmLabel];
-
 }
 
 #pragma mark - Configure UI
@@ -102,10 +98,10 @@
     
     ViewController *mapViewController = (ViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     
-    NSTimeInterval commuteTimeInclTraffic = mapViewController.commuteTimeWithTraffic;
+    NSTimeInterval commuteTimeInclTraffic = mapViewController.destination.commuteTimeWithTraffic;
     NSLog(@"Commute time with traffic is %@", [self timeInHoursAndSeconds:commuteTimeInclTraffic]);
     
-    NSTimeInterval commuteTimeNoTraffic = mapViewController.commuteTimeWithoutTraffic;
+    NSTimeInterval commuteTimeNoTraffic = mapViewController.destination.commuteTimeWithoutTraffic;
     NSLog(@"Commute time without traffic is %@", [self timeInHoursAndSeconds:commuteTimeNoTraffic]);
     
     NSTimeInterval difference = commuteTimeInclTraffic - commuteTimeNoTraffic;

@@ -3,7 +3,7 @@
 
 @implementation LocationAPI
 
-- (CLLocationCoordinate2D) getLocationCoordinateFromAddressString: (NSString*) address
++ (CLLocationCoordinate2D) getLocationCoordinateFromAddressString: (NSString*) address
 {    
     double latitude = 0, longitude = 0;
     NSString *esc_addr =  [address stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

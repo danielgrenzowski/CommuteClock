@@ -17,7 +17,8 @@
     return self;
 }
 
-- (void) activateClock {
+- (void)activateClock {
+    
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 

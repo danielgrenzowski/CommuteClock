@@ -16,9 +16,9 @@
     [super viewDidLoad];
     
     [self createLocationManager];
-    [self initializeGestureRecognizer];
-
     [self initializeCommuteMapView];
+    
+    [self initializeGestureRecognizer];
     [self configureTimeLabel];
     
 }
@@ -38,7 +38,6 @@
 
 - (void)initializeGestureRecognizer {
     
-    self.locationAPI = [[LocationAPI alloc] init];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -63,28 +62,26 @@
 
 - (void)initializeDestinationFromAddressString:(NSString *)address {
     
-    CLLocation *newDestination =
-    [[CLLocation alloc] initWithCoordinate:[self.locationAPI getLocationCoordinateFromAddressString:address]
-                                  altitude:1
-                        horizontalAccuracy:1
-                          verticalAccuracy:-2
-                                 timestamp:nil];
-    
-    self.destination = newDestination;
+
 }
 
 #pragma mark - UI methods
 
 - (void)displayDestinationOnMap
 {
-    MyAnnotation *destinationAnnotation = [[MyAnnotation alloc] initWithTitle:@"Destination" location:self.destination.coordinate];
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     
-    [self.commuteMapView addAnnotation:destinationAnnotation];
+//    point.canShowCallout = YES;
+//    pointimage = [UIImage imageNamed:@"redpin.png"];
+//    point.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    
+    point.coordinate = self.destination.location.coordinate;
+    [self.commuteMapView addAnnotation:point];
 }
 
 - (void)drawRouteOnMap
 {
-    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.coordinate addressDictionary:nil];
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.location.coordinate addressDictionary:nil];
     
     MKMapItem *destinationMapItem = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     MKMapItem *currentUserLocationMapItem = [MKMapItem mapItemForCurrentLocation];
@@ -103,7 +100,7 @@
             NSLog(@"Error %@", error.description);
         } else {
             MKRoute *newRoute = response.routes.lastObject;
-            self.commuteTimeWithTraffic = newRoute.expectedTravelTime;
+            self.destination.commuteTimeWithTraffic = newRoute.expectedTravelTime;
             
             float min = floor(newRoute.expectedTravelTime/60);
             float sec = round(newRoute.expectedTravelTime - min * 60);
@@ -120,7 +117,7 @@
 
 - (void)calculateCommuteTimeWithNoTraffic {
     
-    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.coordinate addressDictionary:nil];
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.destination.location.coordinate addressDictionary:nil];
     
     MKMapItem *destinationMapItem = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     MKMapItem *currentUserLocationMapItem = [MKMapItem mapItemForCurrentLocation];
@@ -142,7 +139,7 @@
         } else {
             MKRoute *newRoute = response.routes.lastObject;
             
-            self.commuteTimeWithoutTraffic = newRoute.expectedTravelTime;
+            self.destination.commuteTimeWithoutTraffic = newRoute.expectedTravelTime;
         }
         
     }];
@@ -174,36 +171,36 @@
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation
 {
-    
-    if ([annotation isKindOfClass:[MyAnnotation class]]){
-        MyAnnotation *myLocation = (MyAnnotation *)annotation;
-        MKAnnotationView *annotationView = [self.commuteMapView dequeueReusableAnnotationViewWithIdentifier:@"MyAnnotation"];
-        
-        if (annotationView == nil)
-            annotationView = myLocation.annotationView;
-        else
-            annotationView.annotation = annotation;
-        
-        return annotationView;
-    } else {
+    if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
+    
+    MKAnnotationView *aView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"mapPin"];
+    if(aView){
+        aView.annotation = annotation;
+    } else {
+        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"mapPin"];
     }
+    
+    aView.canShowCallout = NO;
+    
+    return aView;
 
 }
 
 #pragma mark - UIButton methods
 
-- (IBAction)zoomInOnUsersLocation:(id)sender
-{
+- (IBAction)zoomInOnUsersLocation:(id)sender {
+    
     [self zoomIn:self.commuteMapView.userLocation.location];
 }
 
-- (IBAction)zoomInOnDestination:(id)sender
-{
-    [self zoomIn:self.destination];
+- (IBAction)zoomInOnDestination:(id)sender {
+    
+    [self zoomIn:self.destination.location];
 }
 
-- (void) zoomIn:(CLLocation *)location{
+- (void) zoomIn:(CLLocation *)location {
+    
     MKCoordinateRegion region =
     MKCoordinateRegionMakeWithDistance (location.coordinate, 1000, 1000);
     [self.commuteMapView setRegion:region animated:NO];
@@ -221,8 +218,20 @@
 {
     
     if ([textField.text length] != 0) {
-        self.destinationString = self.destinationTextField.text;
-        [self initializeDestinationFromAddressString:self.destinationString];
+        
+        NSString *destinationString = self.destinationTextField.text;
+        
+        CLLocationCoordinate2D destinationCoordinate = [LocationAPI getLocationCoordinateFromAddressString:destinationString];
+        
+        CLLocation *destinationCLLocation =
+        [[CLLocation alloc] initWithCoordinate:destinationCoordinate
+                                      altitude:1
+                            horizontalAccuracy:1
+                              verticalAccuracy:-2
+                                     timestamp:nil];
+        
+        self.destination = [[Destination alloc] initWithLocation:destinationCLLocation andAddress:destinationString];
+        
         [self displayDestinationOnMap];
         [self drawRouteOnMap];
         [self calculateCommuteTimeWithNoTraffic];
@@ -230,15 +239,13 @@
     } else {
         self.destinationTextField.backgroundColor = [UIColor redColor];
         self.destinationTextField.placeholder = @"Please enter a non-blank address";
-        
     }
     
     [self.destinationTextField resignFirstResponder];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
     [textField resignFirstResponder];
     return YES;
 }

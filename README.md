@@ -1,8 +1,6 @@
 CommuteClock
 ===============
 
-Alarm clock that incorporates live traffic data into your daily routine
+Alarm clock app that adjusts for real-time traffic delays in your trip
 
-Still a work-in-progress
-
-Free to use in any way shape or form
+Free to use in any way, shape, or form
